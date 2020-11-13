@@ -1,5 +1,10 @@
 # TimeWarpFilter
 
+## Key bindings
+- q: Quit the app
+- r: Restart the recording
+- i: Invert the time warpper axis
+- s: Save the image
 
 ## How to set up (On Ubuntu) ? ##
 
@@ -45,7 +50,13 @@ pip install -r requirements.txt
 ...
 ```
 
-### Step 8: done? leave the virtual environment
+### Step 8: Generate .exe from source:
+```
+pyinstaller --onefile main.py
+
+```
+
+### Step 9: done? leave the virtual environment
 ```
 deactivate
 ```
