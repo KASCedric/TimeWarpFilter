@@ -15,6 +15,8 @@ wrapper_step = 1
 wrapper_speed = 1
 
 cv2.namedWindow("Time Warp Filter", cv2.WINDOW_AUTOSIZE)
+# cv2.namedWindow("Time Warp Filter", cv2.WND_PROP_FULLSCREEN)
+# cv2.setWindowProperty("Time Warp Filter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 
 def time_warp(orientation=0):
@@ -24,6 +26,9 @@ def time_warp(orientation=0):
     final_image = np.zeros((height, width, 3), np.uint8)
     use_cam = True
 
+    pause = False
+    pause_value = 0
+
     while True:
         count += 1
         # Capture frame-by-frame
@@ -31,10 +36,13 @@ def time_warp(orientation=0):
             ret, frame = cap.read()
             frame = cv2.flip(frame, 1)
 
-        # Our operations on the frame come here
-        if count % wrapper_speed == wrapper_speed - 1:
-            wrapper_height_before = wrapper_height
-            wrapper_height += wrapper_step
+            # Our operations on the frame come here
+            if not pause:
+                if count % wrapper_speed == wrapper_speed - 1:
+                    wrapper_height_before = wrapper_height
+                    wrapper_height += wrapper_step
+            else:
+                wrapper_height = pause_value
 
             if orientation == 0:
                 frame_freeze = frame[wrapper_height_before: wrapper_height][:][:]
@@ -63,11 +71,17 @@ def time_warp(orientation=0):
             break
         if k == ord('r'):
             use_cam = True
+            pause = False
             wrapper_height = 0
         if k == ord('i'):
             use_cam = True
+            pause = False
             wrapper_height = 0
             orientation = (orientation + 1) % 2
+        if k == ord('p'):
+            pause = False if pause else True
+            if pause:
+                pause_value = wrapper_height
         if k == ord('s'):
             path = './'
             cv2.imwrite(os.path.join(path, 'timeWarp.jpg'), final_image)
@@ -95,5 +109,5 @@ def draw_wrapper(bg_image, wrapper_height, orientation):
 
 if __name__ == "__main__":
 
-    image = time_warp(orientation=1)
+    image = time_warp(orientation=0)
 

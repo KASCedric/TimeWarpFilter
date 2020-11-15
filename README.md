@@ -4,6 +4,7 @@
 - q: Quit the app
 - r: Restart the recording
 - i: Invert the time warpper axis
+- p: Pause the time warpper
 - s: Save the image
 
 ## How to set up (On Ubuntu) ? ##
@@ -52,7 +53,7 @@ pip install -r requirements.txt
 
 ### Step 8: Generate .exe from source:
 ```
-pyinstaller --onefile main.py
+pyinstaller.exe --onefile --noconsole --icon=ascksv.ico main.py
 
 ```
 
