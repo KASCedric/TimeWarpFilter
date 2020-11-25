@@ -1,5 +1,5 @@
 # TimeWarpFilter
-
+Todo: Update readme and write report
 ## Key bindings
 - q: Quit the app
 - r: Restart the recording
