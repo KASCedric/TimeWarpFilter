@@ -46,6 +46,7 @@ python --version
 pip install -r requirements.txt
 ```
 
+
 ### Step 7: Do whatever you want:
 ```
 ...
@@ -61,3 +62,7 @@ pyinstaller.exe --onefile --noconsole --icon=ascksv.ico main.py
 ```
 deactivate
 ```
+
+
+## Inno Setup
+To create a windows installer, use [Inno Setup](https://jrsoftware.org/isinfo.php)
